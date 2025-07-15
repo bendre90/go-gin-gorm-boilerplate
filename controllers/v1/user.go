@@ -38,7 +38,7 @@ func PUTUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, datatransfers.Response{Error: err.Error()})
 		return
 	}
-	if err = handlers.Handler.UpdateUser(uint(c.GetInt(constants.IsAuthenticatedKey)), user); err != nil {
+	if err = handlers.Handler.UpdateUser(c.GetUint(constants.UserIDKey), user); err != nil {
 		c.JSON(http.StatusNotModified, datatransfers.Response{Error: "failed updating user"})
 		return
 	}
